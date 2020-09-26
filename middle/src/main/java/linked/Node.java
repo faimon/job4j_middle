@@ -1,8 +1,8 @@
 package linked;
 
-import net.jcip.annotations.NotThreadSafe;
+import net.jcip.annotations.Immutable;
 
-@NotThreadSafe
+@Immutable
 public class Node<T> {
     private final Node next;
     private final T value;

@@ -16,7 +16,12 @@ public class FileDownload {
                 Thread.sleep(1000);
                 if (bytesRead > speedKb) {
                     timePause = (bytesRead - speedKb) / speedKb;
-                    Thread.sleep(timePause);
+                    System.out.println("bytes read: " + bytesRead);
+                    if (bytesRead > speedKb) {
+                        timePause = (bytesRead - speedKb) / speedKb;
+                        System.out.println("pause time: " + timePause);
+                        Thread.sleep(timePause);
+                    }
                 }
             }
         } catch (IOException | InterruptedException e) {

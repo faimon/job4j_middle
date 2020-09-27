@@ -1,9 +1,10 @@
 package io;
 
 import java.io.*;
+import java.util.function.Predicate;
 
 public class ParseFile {
-    private volatile File file;
+    private File file;
 
     public synchronized void setFile(File f) {
         file = f;
@@ -13,32 +14,29 @@ public class ParseFile {
         return file;
     }
 
-    public synchronized String getContent() {
+    private String getSomeContent(Predicate<Integer> predicate) {
         StringBuilder output = new StringBuilder();
         try (InputStream i = new FileInputStream(file)) {
             int data;
-            while ((data = i.read()) > 0) {
-                output.append((char) data);
+            do {
+                data = i.read();
+                if (predicate.test(data)) {
+                    output.append((char) data);
+                }
             }
+            while (data > 0);
         } catch (IOException e) {
             e.printStackTrace();
         }
         return output.toString();
     }
 
+    public synchronized String getContent() {
+        return getSomeContent(data -> data > 0);
+    }
+
     public synchronized String getContentWithoutUnicode() {
-        StringBuilder output = new StringBuilder();
-        try (InputStream i = new FileInputStream(file)) {
-            int data;
-            while ((data = i.read()) > 0) {
-                if (data < 0x80) {
-                    output.append((char) data);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return output.toString();
+        return getSomeContent(data -> data < 0x80);
     }
 
     public synchronized void saveContent(String content) throws FileNotFoundException {

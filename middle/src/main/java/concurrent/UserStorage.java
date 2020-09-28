@@ -39,8 +39,7 @@ public class UserStorage {
     public synchronized boolean transfer(int fromId, int toId, int amount) {
         User fromUser = null;
         User toUser = null;
-        for (User user : storage
-        ) {
+        for (User user : storage) {
             if (user.getId() == fromId) {
                 fromUser = user;
             }

@@ -4,10 +4,10 @@ import java.io.*;
 import java.util.function.Predicate;
 
 public class ParseFile {
-    private File file;
+    private final File file;
 
-    public synchronized void setFile(File f) {
-        file = f;
+    public ParseFile(File file) {
+        this.file = file;
     }
 
     public synchronized File getFile() {

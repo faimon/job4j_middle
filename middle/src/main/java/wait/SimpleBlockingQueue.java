@@ -10,24 +10,40 @@ import java.util.Queue;
 public class SimpleBlockingQueue<T> {
     @GuardedBy("this")
     private final Queue<T> queue = new LinkedList<>();
+    private final int maxSize;
+
+    public SimpleBlockingQueue(int maxSize) {
+        this.maxSize = maxSize;
+    }
 
     public void offer(T value) {
-        synchronized (queue) {
+        synchronized (this) {
+            while (queue.size() == maxSize) {
+                try {
+                    this.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    Thread.currentThread().interrupt();
+                }
+            }
             queue.offer(value);
-            queue.notifyAll();
+            this.notifyAll();
         }
     }
 
     public T poll() {
-        synchronized (queue) {
+        synchronized (this) {
             try {
-                if (queue.isEmpty()) {
-                    queue.wait();
+                while (queue.isEmpty()) {
+                    this.wait();
                 }
             } catch (InterruptedException e) {
+                e.printStackTrace();
                 Thread.currentThread().interrupt();
             }
+            T rsl = queue.poll();
+            this.notifyAll();
+            return rsl;
         }
-        return queue.poll();
     }
 }

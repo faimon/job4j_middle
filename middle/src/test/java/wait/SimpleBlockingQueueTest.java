@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 public class SimpleBlockingQueueTest {
     @Test
     public void whenOfferAndPoll() throws InterruptedException {
-        SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue();
+        SimpleBlockingQueue<Integer> queue = new SimpleBlockingQueue(5);
         Thread producer = new Thread(
                 () -> {
                     queue.offer(1);

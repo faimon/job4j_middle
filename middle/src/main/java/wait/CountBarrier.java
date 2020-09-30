@@ -10,20 +10,20 @@ public class CountBarrier {
     }
 
     public void count() {
-        count++;
-        if (count == total) {
-            synchronized (monitor) {
-                monitor.notifyAll();
-            }
+        synchronized (monitor) {
+            count++;
+            monitor.notifyAll();
         }
     }
 
     public void await() {
         synchronized (monitor) {
-            try {
-                monitor.wait();
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
+            while (count != total) {
+                try {
+                    monitor.wait();
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                }
             }
         }
     }

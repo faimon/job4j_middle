@@ -16,6 +16,10 @@ public class SimpleBlockingQueue<T> {
         this.maxSize = maxSize;
     }
 
+    public synchronized boolean isEmpty() {
+        return queue.isEmpty();
+    }
+
     public void offer(T value) {
         synchronized (this) {
             while (queue.size() == maxSize) {

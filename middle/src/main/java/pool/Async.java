@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-public class async {
+public class Async {
     public static int[] asyncSum(int[][] matrix) throws ExecutionException, InterruptedException {
         int n = matrix.length;
         int[] sums = new int[2 * n];
@@ -35,9 +35,5 @@ public class async {
             }
             return sum;
         });
-    }
-
-    public static void main(String[] args) {
-
     }
 }

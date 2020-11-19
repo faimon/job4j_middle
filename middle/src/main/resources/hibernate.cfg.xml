@@ -19,5 +19,7 @@
 
         <mapping class="hibernate.Role"/>
         <mapping class="hibernate.User"/>
+        <mapping class="hibernate.auto.AutoBrand"/>
+        <mapping class="hibernate.auto.AutoModel"/>
     </session-factory>
 </hibernate-configuration>

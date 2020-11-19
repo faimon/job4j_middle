@@ -21,5 +21,7 @@
         <mapping class="hibernate.User"/>
         <mapping class="hibernate.auto.AutoBrand"/>
         <mapping class="hibernate.auto.AutoModel"/>
+        <mapping class="hibernate.auto.manyToMany.Address"/>
+        <mapping class="hibernate.auto.manyToMany.Person"/>
     </session-factory>
 </hibernate-configuration>

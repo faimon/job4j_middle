@@ -25,5 +25,8 @@
         <mapping class="hibernate.auto.manyToMany.Person"/>
         <mapping class="hibernate.auto.manyToMany.Author"/>
         <mapping class="hibernate.auto.manyToMany.Book"/>
+        <mapping class="hibernate.auto.lazyInitializationexception.Category"/>
+        <mapping class="hibernate.auto.lazyInitializationexception.Task"/>
+
     </session-factory>
 </hibernate-configuration>

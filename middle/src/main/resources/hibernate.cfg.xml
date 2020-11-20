@@ -23,5 +23,7 @@
         <mapping class="hibernate.auto.AutoModel"/>
         <mapping class="hibernate.auto.manyToMany.Address"/>
         <mapping class="hibernate.auto.manyToMany.Person"/>
+        <mapping class="hibernate.auto.manyToMany.Author"/>
+        <mapping class="hibernate.auto.manyToMany.Book"/>
     </session-factory>
 </hibernate-configuration>

@@ -12,10 +12,22 @@ public class AutoModel {
 
     private String name;
 
+    @ManyToOne
+    @JoinColumn(name = "autoBrand_id")
+    private AutoBrand autoBrand;
+
     public static AutoModel of(String name) {
         AutoModel autoModel = new AutoModel();
         autoModel.name = name;
         return autoModel;
+    }
+
+    public AutoBrand getAutoBrand() {
+        return autoBrand;
+    }
+
+    public void setAutoBrand(AutoBrand autoBrand) {
+        this.autoBrand = autoBrand;
     }
 
     public int getId() {
@@ -46,5 +58,14 @@ public class AutoModel {
     @Override
     public int hashCode() {
         return Objects.hash(id, name);
+    }
+
+    @Override
+    public String toString() {
+        return "AutoModel{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", autoBrand=" + autoBrand +
+                '}';
     }
 }

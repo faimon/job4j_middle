@@ -6,14 +6,15 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "autobrands")
+@Table(name = "autoBrands")
 public class AutoBrand {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private String name;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+
+    @OneToMany(mappedBy = "autoBrand")
     private List<AutoModel> models = new ArrayList<>();
 
     public static AutoBrand of(String name) {
@@ -63,5 +64,13 @@ public class AutoBrand {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, models);
+    }
+
+    @Override
+    public String toString() {
+        return "AutoBrand{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

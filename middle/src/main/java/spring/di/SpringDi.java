@@ -9,7 +9,7 @@ public class SpringDi {
         context.refresh();
 
         StartUI startUI = context.getBean(StartUI.class);
-        startUI.add("Ivan");
+        startUI.add("Ivan1");
         startUI.addFromInput();
         startUI.print();
     }

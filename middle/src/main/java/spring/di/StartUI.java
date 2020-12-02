@@ -1,15 +1,18 @@
 package spring.di;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class StartUI {
     private Store store;
+
+    @Autowired
     private ConsoleInput consoleInput;
 
-    public StartUI(Store store, ConsoleInput input) {
+    @Autowired
+    public void setStore(Store store) {
         this.store = store;
-        this.consoleInput = input;
     }
 
     public void add(String value) {
